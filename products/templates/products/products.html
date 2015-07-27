@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Jquery -->
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body style="padding: 50px;">
+
+  <div class="page-header">
+    <h1 id="Title">Dan's Products</h1>
+  </div>
+
+  <a class="btn btn-default" href="/admin">Add a new product</a>
+
+  <br/>
+  <br/>
+
+  <table class="table">
+    <!-- Products -->
+    <tr>
+      <td>Product Name</td>
+      <td>Img</td>
+      <td>Serial Number</td> 
+      <td>Warranty Info</td>
+      <td>PDF</td>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <!-- Block content needed for img and pdf -->
+      {% block content %}
+      <td>{{ product.product_name }}</td>
+      <td><img style="width: 200px;" src="{{ product.img.url }}"></td>
+      <td>{{ product.serial_number }}</td>
+      <td>{{ product.warranty_info }}</td>
+      <td><a class="btn btn-default" href="{{ product.pdf.url }}">View PDF</a> </td>
+      {% endblock %}
+
+
+    </tr>
+    {%endfor%}
+
+  </table>
+
+
+</body>
+</html>
